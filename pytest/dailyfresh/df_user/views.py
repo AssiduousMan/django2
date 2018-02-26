@@ -3,6 +3,10 @@ from django.shortcuts import render, redirect
 from models import *
 from hashlib import sha1
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+import user_decorator
+import sys
+sys.path.append('../')
+from df_goods.models import *
 # Create your views here.
 
 
@@ -47,6 +51,12 @@ def user_login(request):
     return render(request, 'df_user/login.html', context)
 
 
+def logout(request):
+    request.session.flush()
+    # del request.session['']
+    return redirect('/')
+
+
 def login_handle(request):
     post = request.POST
     name = post.get('username')
@@ -62,7 +72,9 @@ def login_handle(request):
     if len(userinfo) > 0:
         userinfo = userinfo[0]
         if userinfo.upwd == pwd2:
-            red = HttpResponseRedirect('/user/info/')
+            # 这个时候需要或取一下当前用户是从那个界面跳转过来的
+            url = request.COOKIES.get('url', '/')
+            red = HttpResponseRedirect(url)
             if jizhu != 0:
                 # 记录一下用户信息
                 red.set_cookie('uname', name)
@@ -70,6 +82,7 @@ def login_handle(request):
                 red.set_cookie('uname', '', max_age=-1)
             request.session['user_id'] = userinfo.id
             request.session['user_name'] = name
+            # request.session.set_expiry(0)
             return red
         else:
             context = {'title': '用户登录-天天生鲜', 'error_name': 0, 'error_pwd': 1, 'uname': name, 'upwd': pwd}
@@ -79,17 +92,31 @@ def login_handle(request):
         return render(request, 'df_user/login.html', context)
 
 
+@user_decorator.login
 def info(request):
     user_email = UserInfo.objects.get(id=request.session['user_id']).uemail
-    context = {'title': '用户信息-天天生鲜', 'page_name': 1,'user_name': request.session['user_name'], 'user_email': user_email}
+    # 最近浏览
+    goods_ids = request.COOKIES.get('goods_ids', '')
+    goods_ids1 = goods_ids.split(',')
+    goods_list = []
+    for goods_id in goods_ids1:
+        goods_list.append(GoodsInfo.objects.get(id=int(goods_id)));
+
+    context = {'title': '用户信息-天天生鲜', 'page_name': 1,
+               'user_name': request.session['user_name'],
+               'user_email': user_email,
+               'goods_list': goods_list
+               }
     return render(request, 'df_user/user_center_info.html', context)
 
 
+@user_decorator.login
 def order(request):
     context = {'title': '用户订单-天天生鲜', 'page_name': 1}
     return render(request, 'df_user/user_center_order.html', context)
 
 
+@user_decorator.login
 def site(request):
     user = UserInfo.objects.get(id=request.session['user_id'])
     # 这个是修改的订单地址
