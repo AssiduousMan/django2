@@ -2,6 +2,11 @@
 {% block head %}
     <script>
 
+        function jiesuan(){
+            // alert('123');
+            $('#tijiaoform').submit();
+        }
+
         function cart_del(cart_id){
             del = confirm('Is Delete?');
             if(del){
@@ -103,9 +108,10 @@
 		<li class="col05">小计</li>
 		<li class="col06">操作</li>
 	</ul>
+    <form action="/order/" method="get" id="tijiaoform">
     {% for cart in carts %}
             <ul class="cart_list_td clearfix" id="{{ cart.id }}">
-		        <li class="col01"><input type="checkbox" name="" checked></li>
+		        <li class="col01"><input type="checkbox" name="cart_id" value="{{ cart.id }}" checked></li>
 		        <li class="col02"><img src="/static/{{ cart.goods.gpic }}"></li>
 		        <li class="col03">{{ cart.goods.gtitle }}<br><em>{{ cart.goods.gprice }}元/{{ cart.goods.gunit }}</em></li>
 		        <li class="col04">{{ cart.goods.gunit }}</li>
@@ -127,6 +133,7 @@
 		<li class="col01"><input type="checkbox" id="check_all" name="" checked=""></li>
 		<li class="col02">全选</li>
 		<li class="col03">合计(不含运费)：<span>¥</span><em id="total">42.60</em><br>共计<b class="total_count1">2</b>件商品</li>
-		<li class="col04"><a href="place_order.html">去结算</a></li>
+		<li class="col04"><a href="javascript:jiesuan();">去结算</a></li>
 	</ul>
+    </form>
 {% endblock content %}

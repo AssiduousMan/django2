@@ -96,10 +96,12 @@ def login_handle(request):
 def info(request):
     user_email = UserInfo.objects.get(id=request.session['user_id']).uemail
     # 最近浏览
-    goods_ids = request.COOKIES.get('goods_ids', '')
+    goods_ids = request.COOKIES.get('goods_ids', '1')
     goods_ids1 = goods_ids.split(',')
     goods_list = []
+
     for goods_id in goods_ids1:
+        print('goods_id' + goods_id)
         goods_list.append(GoodsInfo.objects.get(id=int(goods_id)));
 
     context = {'title': '用户信息-天天生鲜', 'page_name': 1,
