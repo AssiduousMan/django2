@@ -20,24 +20,24 @@
 
             });
         });
-		var $add_x = $('#add_cart').offset().top;
-		var $add_y = $('#add_cart').offset().left;
-
-		var $to_x = $('#show_count').offset().top;
-		var $to_y = $('#show_count').offset().left;
-
-		$(".add_jump").css({'left':$add_y+80,'top':$add_x+10,'display':'block'})
-		$('#add_cart').click(function(){
-			$(".add_jump").stop().animate({
-				'left': $to_y+7,
-				'top': $to_x+7},
-				"fast", function() {
-					$(".add_jump").fadeOut('fast',function(){
-						$('#show_count').html(2);
-					});
-
-			});
-		})
+		{#var $add_x = $('#add_cart').offset().top;#}
+		{#var $add_y = $('#add_cart').offset().left;#}
+        {##}
+		{#var $to_x = $('#show_count').offset().top;#}
+		{#var $to_y = $('#show_count').offset().left;#}
+        {##}
+		{#$(".add_jump").css({'left':$add_y+80,'top':$add_x+10,'display':'block'})#}
+		{#$('#add_cart').click(function(){#}
+		{#	$(".add_jump").stop().animate({#}
+		{#		'left': $to_y+7,#}
+		{#		'top': $to_x+7},#}
+		{#		"fast", function() {#}
+		{#			$(".add_jump").fadeOut('fast',function(){#}
+		{#				$('#show_count').html(2);#}
+		{#			});#}
+        {##}
+		{#	});#}
+		{#{)#}
 	</script>
 {% endblock %}
 {% block detail %}
@@ -83,4 +83,44 @@
 
     </div>
 {% endblock detail2 %}
+{% block foot %}
+    <div class="add_jump"></div>
+
+{#	<script type="text/javascript" src="js/jquery-1.12.2.js"></script>#}
+	<script type="text/javascript">
+		var $add_x = $('#add_cart').offset().top;
+		var $add_y = $('#add_cart').offset().left;
+
+		var $to_x = $('#show_count').offset().top;
+		var $to_y = $('#show_count').offset().left;
+
+		$(".add_jump").css({'left':$add_y+80,'top':$add_x+10,'display':'block'})
+		$('#add_cart').click(function(){
+            //判断是否登录过，若没有登录则提示登录
+            alert($('.login_btn').text());
+            if($('.login_btn').text().indexOf('登录') >= 0){
+                alert('请先登录在购买');
+                location.href = '/user/login/';
+                return;
+
+            }
+            {#// dong hua#}
+		    $(".add_jump").stop().animate({
+				'left': $to_y+7,
+				'top': $to_x+7},
+				"fast", function() {
+					$(".add_jump").fadeOut('fast',function(){
+						{#$('#show_count').html(2);#}
+					});
+
+			});
+            num = parseInt($('.num_show').val());
+            $.get('/cart/add{{ g.id }}_'+ num +'/', function(data){
+                count = data.count;
+                $('#show_count').text(count)
+
+            }, 'json');
+		});
+	</script>
+{% endblock foot %}
 
