@@ -2,6 +2,9 @@
 from django.shortcuts import render
 from models import *
 from django.core.paginator import Paginator, Page
+import sys
+sys.path.append('../')
+from df_cart.models import *
 
 # Create your views here.
 def index(request):
@@ -87,3 +90,21 @@ def detail(request, id):
 
     response.set_cookie('goods_ids', goods_ids)
     return response
+
+
+#购物车数量
+def cart_count(request):
+    if request.session.has_key('user_id'):
+        return CartInfo.objects.filter(user_id=request.session['user_id'])
+    else:
+        return 0
+
+
+from haystack.views import SearchView
+class MySearchView(SearchView):
+    def extra_context(self):
+        context = super(MySearchView, self).extra_context()
+        context['title'] = '搜索'
+        context['guest_cart'] = 1
+        context['cart_count'] = cart_count(self.request)
+        return context
