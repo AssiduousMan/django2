@@ -1,0 +1,29 @@
+#include<stdio.h>
+int main()
+{
+    int i,n,a[100],totle;
+    while(scanf("%d",&n)!=EOF&&n!=0)
+    {
+        totle=0;
+        for(i=0;i<n;i++)
+        {
+            scanf("%d",&a[i]);
+        }
+        for(i=0;i<n;i++)
+        {
+            totle+=a[i]/100;
+            a[i]=a[i]%100;
+            totle+=a[i]/50;
+            a[i]=a[i]%50;
+            totle+=a[i]/10;
+            a[i]=a[i]%10;
+            totle+=a[i]/5;
+            a[i]=a[i]%5;
+            totle+=a[i]/2;
+            a[i]=a[i]%2;
+            totle+=a[i]/1;
+            a[i]=a[i]%1;
+        }
+        printf("%d\n",totle);
+    }
+}

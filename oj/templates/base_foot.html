@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>{{ title }}</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+{#	<link rel="stylesheet" type="text/css" href="/static/css/main.css">#}
+	<script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+{#    <script type="text/javascript">#}
+{#        alert($.cookie('number'));#}
+{#    </script>#}
+    <style type="text/css">
+
+    </style>
+    {% block login_register_form %}{% endblock login_register_form %}
+	{% block head %}{% endblock head %}
+</head>
+<body>
+{% block body %}{% endblock body %}
+<footer class="footer navbar-fixed-bottom">
+        <div class="container">
+
+            <p>地址：北京交通大学海滨学院&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮编：061100 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话13191938752 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>版权归北京交通大学海滨学院计算机科学系科学与技术协会所有 未经许可不得转载使用　</p>
+
+        </div>
+</footer>
+{% block foot %}{% endblock foot %}
+</body>
+</html>

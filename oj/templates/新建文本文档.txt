@@ -1,0 +1,33 @@
+1. 选题原则
+
+(1) 课题的选择应符合专业培养目标,达到毕业设计(论文)教学大纲的基本要求.应尽量结合生产实际,科学研究,现代文化,经济建设的任务进行,以利于增强学生面对实际的意识,培养学生严谨的科学态度和一丝不苟的工作作风,也有利于调动学生的积极性,增强责任感和紧迫感.
+
+(2) 课题的选择应贯彻因材施教的原则,使学生在原有的水平和能力方面有较大的提高,并鼓励学生有所创新.
+
+(3) 课题的难度要适当,份量要合理,涉及的知识范围,理论深度要符合学生在校所学理论知识和实践技能的实际情况,达到教学计划所规定的综合训练要求,使学生在规定的时间内经过努力能够完成.
+
+(4) 课题类型.根据我校专业情况,可分为设计和论文两大类.
+
+(5) 坚持一人一题.对于工作量大的课题,可组织数名学生协同攻关,分工设计,但须明确每人一个子课题,或用副标题区别.子课题立足于大题,分别展开.明确每个学生需独立完成且能满足教学基本要求,使其受到全面综合训练的工作任务.
+
+(6) 学生除了在导师提出的课题中选择毕业设计(论文)课题外,也可根据本专业特点选择来自学生在科学活动和工程实践中的自选课题,但必须经指导教师审定,按审题程序申报.
+<form action="" class="navbar-form navbar-right">
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" class="form-control">
+              <span class="input-group-btn">
+                <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+              </span>
+            </div>
+          </div>
+          <span>&nbsp;&nbsp;</span>
+          <a href="#"><span class="glyphicon glyphicon-pencil"></span><span>&nbsp;写博客</span></a>
+          <span>&nbsp;&nbsp;</span>
+          <a href="#"><span class="glyphicon glyphicon-new-window"></span><span>&nbsp;发Chat</span></a>
+          <span>&nbsp;&nbsp;</span>
+          <!-- <a href=""><span class="glyphicon glyphicon-pencil"></span><span>&nbsp;写博客</span></a> -->
+          <a href="https://passport.csdn.net/account/login">登录</a>
+          <span>&nbsp;&nbsp;</span>
+          <a href="https://passport.csdn.net/account/mobileregister?action=mobileRegister">注册</a>
+          <span>&nbsp;&nbsp;</span>
+        </form>

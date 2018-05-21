@@ -1,0 +1,544 @@
+
+
+{% extends 'base.html' %}
+{% block head %}
+
+
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/jquery-confirm.css">
+    <link rel="stylesheet" href="/static/css/bootstrap-select.min.css">
+{#    <script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>#}
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-confirm.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            {#alert("123");#}
+
+            $('.user_name_exist').hide();
+            $('.pwd_same').hide();
+            $('.name').blur(function () {
+
+                $.get('/user/checknumber_' + $(this).val(),function(dic){
+                    {#alert(dic.data.result);#}
+                    //city=$('#city');
+                    //city.empty().append('<option value="">请选择市</option>');
+                    //$.each(dic.data,function(index,item){
+                    //    city.append('<option value='+item.id+'>'+item.title+'</option>');
+                    //})
+                    if(dic.data.result == "True")
+                        $('.user_name_exist').show();
+                    else
+                        $('.user_name_exist').hide();
+                });
+                if($(this).val() == ""){
+                    $('.user_name_exist').show();
+                }
+
+            });
+
+            $('#pwd2').blur(function () {
+
+                var pwd1 = $('#pwd').val()
+                if(pwd1 != $(this).val()){
+                    $('.pwd_same').show();
+                }
+                else{
+                    $('.pwd_same').hide();
+                }
+
+            });
+
+            $('#user_mobile').blur(function () {
+                var phone = parseInt($(this).val());
+                if((isNaN(phone) && $(this).val() != "") || $(this).val().length != 11){
+                    alert("电话号码错误");
+                    return;
+                }
+
+            });
+
+            $('#party_zipcode').blur(function () {
+                var zipcode = parseInt($(this).val());
+                if(isNaN(zipcode) && $(this).val() != ""){
+                    alert("邮编输入错误");
+                    return;
+                }
+            });
+
+
+            major = $('.major').change(
+                function () {
+                    temp = $(this).val();
+                    {#alert($(this).val());#}
+                    if(temp == ""){
+                        $('.grade').remove();
+                    }
+                }
+            );
+            {#alert($('.major').val());#}
+
+            $('#submit_button').click(function () {
+                /*if($('.party_name_exist').is(":hidden")){
+                    $('form').submit();
+                }
+                else {
+                    alert("用户名已经存在");
+                    return;
+                }*/
+                if($('.name').val() == ""){
+                    alert("用户名不能为空!")
+                    return ;
+                }
+                $('form').submit();
+                //$('form').submit();
+            });
+
+        });
+
+
+    </script>
+    <style>
+        body{
+            background-color: #F0F0F0;
+            {#background-color: gold;#}
+            /*background:url("../images/bg.jpg") no-repeat;*/
+            /*background-size: 100%;*/
+            margin-bottom: 80px;
+
+        }
+        table{
+
+            border-left:1px solid #D3D3D3;
+            border-right:1px solid #D3D3D3;
+            border-bottom:1px solid #D3D3D3;
+        }
+        footer{
+            background-color: #2a2730;
+            margin-bottom: 0px;
+        }
+
+        footer p{
+            margin-top: 10px;
+            color: #99979c;
+            font-size: 18px;
+            text-align: center;
+            /*text-indent: 2em;*/
+        }
+        label{
+            font-weight: 400;
+        }
+        .logo{
+            margin-top: -6px;
+            /*.co*/
+        }
+        .register_frame{
+            width:450px;
+            margin: 0px auto;
+            /*background-color: gold;*/
+        }
+        .register_frame .box{
+            /*background-color: green;*/
+            width:100%;
+            /*height:100%;*/
+            line-height: 52px;
+            margin-top: 15px;
+            padding-left: 10px;
+            border: 1px solid #ccc;
+            /*position: relative;*/
+        }
+        .register_frame .box input{
+            width:200px;
+            font-size:16px;
+            padding-left: 20px;
+            border:none;
+            outline: none;
+            background-color: transparent;
+        }
+        .select_type{
+            width:200px;
+            font-size:16px;
+            /*padding-left: 20px;*/
+            /*margin-left: 40px;*/
+        }
+        .register_frame .register_btn{
+            margin-top: 15px;
+            font-size: 18px;
+            width: 100%;
+            height: 50px;
+        }
+        .user_name_exist{
+            width: 100px;
+            display: inline;
+        }
+        .user_name_exist span{
+            /*display: none;*/
+            margin-left: 50px;
+            color: red;
+            font-size: 14px;
+        }
+        .pwd_same{
+            width: 100px;
+            display: inline;
+        }
+        .pwd_same span{
+            margin-left: 50px;
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+
+{% endblock head %}
+{% block content %}
+
+
+    <form action="/user/register_handle/" method="post">
+                    {% csrf_token %}
+        <div class="container">
+            <div class="register_frame">
+                <div class="box default">
+                    <label>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号&nbsp;</label>
+                    <input type="text" name="number" placeholder="请输入用户名" class="name"/>
+                    <div class="user_name_exist">
+                        <span>学号已经被注册</span>
+                    </div>
+                    <i></i>
+                </div>
+                <div class="box default">
+                    <label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码&nbsp;</label>
+                    <input type="password" name="password" placeholder="请输入密码" id="pwd"/>
+{#                    <div class="party_name_exist">#}
+{#                        <span>学号已经被注册</span>#}
+{#                    </div>#}
+                    <i></i>
+                </div>
+                <div class="box default">
+                    <label>重&nbsp;复&nbsp;密&nbsp;码</label>
+                    <input type="password" name="password2" placeholder="请再次输入密码" id="pwd2"/>
+{#                    <div class="party_name_exist">#}
+{#                        <span>学号已经被注册</span>#}
+{#                    </div>#}
+                    <div class="pwd_same">
+                        <span>输入密码不一致</span>
+                    </div>
+                    <i></i>
+                </div>
+                <div class="box default">
+                    <label>系&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <select class="selectpicker select_type department" name="department">
+                        <option value="计算机科学系">计算机科学系</option>
+{#                        <option value="1">企业</option>#}
+                    </select>
+                    <i></i>
+                </div>
+                <div class="box default">
+                    <label>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <select class="selectpicker select_type major" name="major">
+                        <option value="计算机科学与技术">计算机科学与技术</option>
+                        <option value="软件工程">软件工程</option>
+                        <option value="物联网">物联网</option>
+                        <option value="电子商务">电子商务</option>
+                    </select>
+                    <i></i>
+                </div>
+{#                <div class="box default">#}
+{#                    <label>年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>#}
+{#                    <select class="selectpicker select_type grade" name="grade">#}
+{#                        <option value="15">15</option>#}
+{#                        <option value="16">16</option>#}
+{#                        <option value="17">17</option>#}
+{##}
+{#                        <option value="1">企业</option>#}
+{#                    </select>#}
+{#                    <i></i>#}
+{#                </div>#}
+{#                <div class="box default">#}
+{#                    <label>班&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>#}
+{#                    <select class="selectpicker select_type user_class" name="user_class">#}
+{#                        <option value=""></option>#}
+{#                        <option value="1">企业</option>#}
+{#                    </select>#}
+{#                    <i></i>#}
+{#                </div>#}
+                <div class="box default">
+                    <label>班&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级&nbsp;</label>
+                    <input type="text" name="user_class" placeholder="请输入班级"/>
+                    <i></i>
+                </div>
+                <div class="box default">
+                    <label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名&nbsp;</label>
+                    <input type="text" name="name" placeholder="请输姓名"/>
+{#                    <div class="party_name_exist">#}
+{#                        <span>学号已经被注册</span>#}
+{#                    </div>#}
+                    <i></i>
+                </div>
+                <div class="box default">
+                    <label>联&nbsp;系&nbsp;电&nbsp;话</label>
+                    <input type="text" name="mobile" placeholder="请输入联系电话" id="user_mobile"/>
+                    <i></i>
+                </div>
+
+                <input type="button" class="btn btn-primary register_btn" value="注册" id="submit_button"></input>
+            </div>
+        </div>
+    </form>
+
+
+{% endblock content %}
+
+
+
+
+
+
+
+{#<html>#}
+{#<head>#}
+{#    <title>用户注册</title>#}
+{#    <link rel="stylesheet" href="../css/bootstrap.min.css">#}
+{#    <link rel="stylesheet" href="../css/bootstrap-select.min.css">#}
+{#    <script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>#}
+{#    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->#}
+{#    <script type="text/javascript" src="../js/bootstrap.min.js"></script>#}
+{#    <script type="text/javascript" src="../js/bootstrap-select.min.js"></script>#}
+{#    <script type="text/javascript">#}
+{##}
+{#        $(function () {#}
+{##}
+{#            $('.party_name_exist').hide();#}
+{#            $('#party_name').blur(function () {#}
+{#                // alert($(this).val());#}
+{#                // return ;#}
+{#                $.ajax({#}
+{#                    url : "${pageContext.request.contextPath }/checkNameAjax",#}
+{#                    type : "post",#}
+{#                    // data表示发送的数据#}
+{#                    data :JSON.stringify({partyName:$(this).val()}),#}
+{#                    // 定义发送请求的数据格式为JSON字符串#}
+{#                    contentType : "application/json;charset=UTF-8",#}
+{#                    //定义回调响应的数据格式为JSON字符串,该属性可以省略#}
+{#                    dataType : "json",#}
+{#                    //成功响应的结果#}
+{#                    success : function(data){#}
+{#                        // alert(data.result);#}
+{#                        if(data.result == "true"){#}
+{#                            // alert("用户名已经存在");#}
+{#                            //  显示用户名已存在的提示框#}
+{#                            $('.party_name_exist').show();#}
+{#                            // $('.party_name_exist').attr({display: 'inline'});#}
+{#                        }#}
+{#                        else{#}
+{#                            $('.party_name_exist').hide();#}
+{#                            // alert("用户名不存在");#}
+{#                        }#}
+{#                    }#}
+{#                });#}
+{##}
+{#            });#}
+{##}
+{#            $('#party_mobile').blur(function () {#}
+{#                var phone = parseInt($(this).val());#}
+{#                if(isNaN(phone) && $(this).val() != ""){#}
+{#                    alert("电话号码错误");#}
+{#                    return;#}
+{#                }#}
+{#            });#}
+{##}
+{#            $('#party_zipcode').blur(function () {#}
+{#                var zipcode = parseInt($(this).val());#}
+{#                if(isNaN(zipcode) && $(this).val() != ""){#}
+{#                    alert("邮编输入错误");#}
+{#                    return;#}
+{#                }#}
+{#            });#}
+{##}
+{#            $('#submit_button').click(function () {#}
+{#                if($('.party_name_exist').is(":hidden")){#}
+{#                    $('form').submit();#}
+{#                }#}
+{#                else {#}
+{#                    alert("用户名已经存在");#}
+{#                    return;#}
+{#                }#}
+{#                //$('form').submit();#}
+{#            });#}
+{##}
+{#        });#}
+{##}
+{##}
+{#    </script>#}
+{#    <style>#}
+{#        body{#}
+{#            background-color: #F0F0F0;#}
+{#            /*background-color: gold;*/#}
+{#            /*background:url("../images/bg.jpg") no-repeat;*/#}
+{#            /*background-size: 100%;*/#}
+{##}
+{#        }#}
+{#        table{#}
+{##}
+{#            border-left:1px solid #D3D3D3;#}
+{#            border-right:1px solid #D3D3D3;#}
+{#            border-bottom:1px solid #D3D3D3;#}
+{#        }#}
+{#        footer{#}
+{#            background-color: #2a2730;#}
+{#            margin-bottom: 0px;#}
+{#        }#}
+{##}
+{#        footer p{#}
+{#            margin-top: 10px;#}
+{#            color: #99979c;#}
+{#            font-size: 18px;#}
+{#            text-align: center;#}
+{#            /*text-indent: 2em;*/#}
+{#        }#}
+{#        label{#}
+{#            font-weight: 400;#}
+{#        }#}
+{#        .logo{#}
+{#            margin-top: -6px;#}
+{#            /*.co*/#}
+{#        }#}
+{#        .register_frame{#}
+{#            width:450px;#}
+{#            margin: 0px auto;#}
+{#            /*background-color: gold;*/#}
+{#        }#}
+{#        .register_frame .box{#}
+{#            /*background-color: green;*/#}
+{#            width:100%;#}
+{#            /*height:100%;*/#}
+{#            line-height: 52px;#}
+{#            margin-top: 15px;#}
+{#            padding-left: 10px;#}
+{#            border: 1px solid #ccc;#}
+{#            /*position: relative;*/#}
+{#        }#}
+{#        .register_frame .box input{#}
+{#            width:200px;#}
+{#            font-size:16px;#}
+{#            padding-left: 20px;#}
+{#            border:none;#}
+{#            outline: none;#}
+{#            background-color: transparent;#}
+{#        }#}
+{#        .select_type{#}
+{#            width:200px;#}
+{#            font-size:16px;#}
+{#            /*padding-left: 20px;*/#}
+{#            /*margin-left: 40px;*/#}
+{#        }#}
+{#        .register_frame .register_btn{#}
+{#            margin-top: 15px;#}
+{#            font-size: 18px;#}
+{#            width: 100%;#}
+{#            height: 50px;#}
+{#        }#}
+{#        .party_name_exist{#}
+{#            width: 100px;#}
+{#            display: inline;#}
+{#        }#}
+{#        .party_name_exist span{#}
+{#            /*display: none;*/#}
+{#            margin-left: 50px;#}
+{#            color: red;#}
+{#            font-size: 14px;#}
+{#        }#}
+{#    </style>#}
+{#</head>#}
+{#<body>#}
+{#    <div class="navbar navbar-default navbar-static-top">#}
+{#        <!-- <div class="container"> -->#}
+{##}
+{#        <div class="navbar-header">#}
+{#            <button class="navbar-toggle" data-toggle="collapse" data-target="#togglemenu">#}
+{#                <span class="icon-bar"></span>#}
+{#                <span class="icon-bar"></span>#}
+{#                <span class="icon-bar"></span>#}
+{#            </button>#}
+{#            <a href="#" class="navbar-brand"><img src="../images/logo.png" alt="" class="logo"></a>#}
+{#        </div>#}
+{#        <div class="collapse navbar-collapse" id="togglemenu">#}
+{#            <ul class="nav navbar-nav">#}
+{#                <li><a href="/">首页</a></li>#}
+{#                <li><a href="${pageContext.request.contextPath}/toPartyList">查看会员</a></li>#}
+{#                <li><a href="${pageContext.request.contextPath}/toRegisterParty">注册会员</a></li>#}
+{#                <li><a href="${pageContext.request.contextPath}/toSelectPartyEdit">编辑会员</a></li>#}
+{#                <li><a href="${pageContext.request.contextPath}/toSelectPartyDelete">删除会员</a></li>#}
+{#                <li><a href="${pageContext.request.contextPath}/toSearchParty">查找会员</a></li>#}
+{#                <%--<li><a href="#">问答</a></li>--%>#}
+{#                <%--<li><a href="#">商城</a></li>--%>#}
+{#                <%--<li><a href="#">VIP</a></li>--%>#}
+{#                <%--<li><a href="#">活动</a></li>--%>#}
+{#                <%--<li><a href="#">招聘</a></li>--%>#}
+{#                <%--<li><a href="#">...</a></li>--%>#}
+{#            </ul>#}
+{#        </div>#}
+{#        <!-- </div> -->#}
+{##}
+{#    </div>#}
+{#    <form action="${pageContext.request.contextPath}/registerParty" method="post">#}
+{#        <div class="container">#}
+{#            <div class="register_frame">#}
+{#                <div class="box default">#}
+{#                    <label>用&nbsp;&nbsp;&nbsp;户&nbsp;&nbsp;&nbsp;名</label>#}
+{#                    <input type="text" name="partyName" placeholder="请输入用户名" id="party_name"/>#}
+{#                    <div class="party_name_exist">#}
+{#                        <span>用户名已经存在</span>#}
+{#                    </div>#}
+{#                    <i></i>#}
+{#                </div>#}
+{#                <div class="box default">#}
+{#                    <label>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>#}
+{#                    <select class="selectpicker select_type" name="partyType">#}
+{#                        <option value="0">个人</option>#}
+{#                        <option value="1">企业</option>#}
+{#                    </select>#}
+{#                    <i></i>#}
+{#                </div>#}
+{#                <div class="box default">#}
+{#                    <label>级&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>#}
+{#                    <select class="selectpicker select_type" name="partyLevel">#}
+{#                        <option value="初级">初级</option>#}
+{#                        <option value="中级">中级</option>#}
+{#                        <option value="高级">高级</option>#}
+{#                    </select>#}
+{#                    <i></i>#}
+{#                </div>#}
+{#                <div class="box default">#}
+{#                    <label>联&nbsp;系&nbsp;电&nbsp;话</label>#}
+{#                    <input type="text" name="partyMobile" placeholder="请输入联系电话" id="party_mobile"/>#}
+{#                    <i></i>#}
+{#                </div>#}
+{#                <div class="box default">#}
+{#                    <label>邮&nbsp;政&nbsp;编&nbsp;码</label>#}
+{#                    <input type="text" name="partyZipcode" placeholder="请输入邮政编码" id="party_zipcode"/>#}
+{#                    <i></i>#}
+{#                </div>#}
+{#                <div class="box default">#}
+{#                    <label>联&nbsp;系&nbsp;地&nbsp;址</label>#}
+{#                    <input type="text" name="partyAddress" placeholder="请输入联系地址" />#}
+{#                    <i></i>#}
+{#                </div>#}
+{#                <input type="button" class="btn btn-primary register_btn" value="注册" id="submit_button"></input>#}
+{#            </div>#}
+{#        </div>#}
+{#    </form>#}
+{#    <footer class="footer navbar-fixed-bottom">#}
+{#        <div class="container">#}
+{##}
+{#            <p>地址：北京交通大学海滨学院&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮编：061100 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话13191938752 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>版权归北京交通大学海滨学院所有 未经许可不得转载使用　</p>#}
+{##}
+{#        </div>#}
+{#    </footer>#}
+{#    <script language="JavaScript">#}
+{#        function backto(url) {#}
+{#            window.location.replace(url);#}
+{#        }#}
+{#    </script>#}
+{#    <script type="text/javascript" color="0,0,0" opacity='0.7' zIndex="-2" count="150" src="../js/canvas-nest.min.js"></script>#}
+{#</body>#}
+{#</html>#}

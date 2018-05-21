@@ -1,0 +1,351 @@
+{#<%--#}
+{#  Created by IntelliJ IDEA.#}
+{#  User: wyx#}
+{#  Date: 2018/4/22#}
+{#  Time: 18:20#}
+{#  To change this template use File | Settings | File Templates.#}
+{#--%>#}
+{#<%@ page contentType="text/html;charset=UTF-8" language="java" %>#}
+{#<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>#}
+
+
+{#<%--#}
+{#  Created by IntelliJ IDEA.#}
+{#  User: wyx#}
+{#  Date: 2018/4/22#}
+{#  Time: 12:01#}
+{#  To change this template use File | Settings | File Templates.#}
+{#--%>#}
+{#<%@ page contentType="text/html;charset=UTF-8" language="java" %>#}
+
+
+{% extends 'base.html' %}
+{% block head %}
+    <meta http-equiv="refresh" content="5">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+{#    <script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>#}
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            /*//  创建模拟表单post跳转提交的方法。
+            function goto_post(url,args){
+                // alert(123);
+                var body = $(document.body), form = $("<form method='post'></form>"), input;
+                form.attr({"action":url});
+                $.each(args,function(key,value){
+                    input = $("<input type='hidden'>");
+                    input.attr({"name":key});
+                    input.val(value);
+                    form.append(input);
+                });
+                //  先将form加入到body中，之后在提交，最后在移除form。。
+                form.appendTo(document.body);
+                form.submit();
+                document.body.removeChild(form[0]);
+            }
+
+*/
+            {#alert($('.True').parent('tr').innerHTML);#}
+            {#alert($('.a1').text());#}
+            $('.True').parent().css('background', "#ADFF2F");
+            $('.True').html('<span class="glyphicon glyphicon-ok"></span>');
+            $('.False').parent().css('background', '#EE3B3B');
+            $('.False').html('<span class="glyphicon glyphicon-remove"></span>');
+            $('.TimeOut').parent().css('background', '#EE9A00');
+            $('.TimeOut').html('<span class="glyphicon glyphicon-dashboard">TimeOut</span>');
+
+            $('tr').dblclick(function () {
+                //  获得双击的tr中的id值。
+                var id = $(this).attr('id');
+                // alert(id);
+                //  提交post表单
+                window.location.href = ("/toShowSelectTopic_" + id)
+                {#goto_post("toShowSelectTopic_" + id);#}
+            });
+        });
+    </script>
+    <style>
+        body{
+            background-color: #F0F0F0;
+            /*background:url("../images/bg.jpg") no-repeat;*/
+            /*background-size: 100%;*/
+            margin-bottom: 80px;
+        }
+
+        table{
+
+            border-left:1px solid #D3D3D3;
+            border-right:1px solid #D3D3D3;
+            border-bottom:1px solid #D3D3D3;
+        }
+        footer{
+            background-color: #2a2730;
+            /*margin-bottom: 0px;*/
+        }
+
+        footer p{
+            margin-top: 10px;
+            color: #99979c;
+            font-size: 18px;
+            text-align: center;
+            /*text-indent: 2em;*/
+        }
+        .logo{
+            margin-top: -6px;
+            /*.co*/
+        }
+        .hint{
+            /*margin: 0px auto;*/
+            text-align: center;
+            font-size: 16px;
+            margin-bottom: 0px;
+            /*margin-top: -10px;*/
+            /*margin-bottom: 10px;*/
+        }
+    </style>
+{% endblock head %}
+{% block content %}
+
+    <div class="container">
+{#        <%--<h3 class="hint">双击要编辑的会员信息</h3>--%>#}
+            <div class="alert alert-info hint" role="alert">
+                题目状态
+            </div>
+    </div>
+    <div class="container">
+        <form name="frm" method="post">
+                        <table class="table table-striped table-hover">
+                            <tr>
+                                <td width="10%">题号</td>
+                                <td width="40%" align="left">&nbsp;&nbsp;&nbsp;&nbsp;题目</td>
+                                <td width="10%" align="left">语言</td>
+                                <td width="10%" align="left">用户</td>
+                                <td width="10%" align="left">结果</td>
+{#                                <td width="20%" align="left">创建时间</td>#}
+{#                                <%--<td width="20%" align="left">联系地址</td>--%>#}
+                            </tr>
+                            <!--使用jstl标签渲染数据-->
+                            {% for topicStatus in topicStatusList %}
+                                <tr id="{{ topicStatus.topicInfo.id }}">
+                                    <td>{{ topicStatus.topicInfo.id }}</td>
+                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ topicStatus.topicInfo.title }}</td>
+                                    <td>{{ topicStatus.language }}</td>
+                                    <td>{{ topicStatus.number }}</td>
+                                    <td class="{{ topicStatus.result }}">{{ topicStatus.result }}<span class="glyphicon glyphicon-ok"></span></td>
+{#                                    <td>{{ topicStatus.created_time }}</td>#}
+                                </tr>
+{#                                <li>#}
+{#					            <h4><a href="/{{ g.id }}/">{{ g.gtitle }}</a></h4>#}
+{#					            <a href="/{{ g.id }}/"><img src="/static/{{ g.gpic }}"></a>#}
+{#					            <div class="prize">¥ {{ g.gprice }}</div>#}
+{#				                </li>#}
+                            {% endfor %}
+{#                            <c:forEach var="topic" items="${topic_list}" varStatus="t">#}
+{#                                <tr id="${topic.id}">#}
+{#                                    <td><c:out value='${topic.id}' /></td>#}
+{#                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;<c:out value='${topic.title}' /></td>#}
+{#                                    <td><c:out value='${topic.passingRate}' /></td>#}
+{#                                    <td><c:out value='${topic.passingPeopleCount}' /></td>#}
+{#                                    <td><c:out value='${topic.tryingPeopleCount}' /></td>#}
+{#                                    <td><c:out value='${topic.createdTime}' /></td>#}
+{#                                </tr>#}
+{#                            </c:forEach>#}
+
+                        </table>
+        </form>
+    </div>
+
+{% endblock content %}
+
+
+
+
+
+{##}
+{##}
+{#<html>#}
+{#<head>#}
+{#    <title>会员列表</title>#}
+{#    <link rel="stylesheet" href="../css/bootstrap.min.css">#}
+{#    <script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>#}
+{#    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->#}
+{#    <script type="text/javascript" src="../js/bootstrap.min.js"></script>#}
+{#    <script type="text/javascript">#}
+{#        $(function () {#}
+{##}
+{#            //  创建模拟表单post跳转提交的方法。#}
+{#            function goto_post(url,args){#}
+{#                // alert(123);#}
+{#                var body = $(document.body), form = $("<form method='post'></form>"), input;#}
+{#                form.attr({"action":url});#}
+{#                $.each(args,function(key,value){#}
+{#                    input = $("<input type='hidden'>");#}
+{#                    input.attr({"name":key});#}
+{#                    input.val(value);#}
+{#                    form.append(input);#}
+{#                });#}
+{#                //  先将form加入到body中，之后在提交，最后在移除form。。#}
+{#                form.appendTo(document.body);#}
+{#                form.submit();#}
+{#                document.body.removeChild(form[0]);#}
+{#            }#}
+{##}
+{#            $('tr').dblclick(function () {#}
+{#                //  获得双击的tr中的id值。#}
+{#                var id = $(this).attr('id');#}
+{#                // alert(id);#}
+{#                //  提交post表单#}
+{#                goto_post("${pageContext.request.contextPath}/toShowSelectTopic", {'id': id});#}
+{#            });#}
+{#        });#}
+{#    </script>#}
+{#    <style>#}
+{#        body{#}
+{#            background-color: #F0F0F0;#}
+{#            /*background:url("../images/bg.jpg") no-repeat;*/#}
+{#            /*background-size: 100%;*/#}
+{#            margin-bottom: 80px;#}
+{#        }#}
+{##}
+{#        table{#}
+{##}
+{#            border-left:1px solid #D3D3D3;#}
+{#            border-right:1px solid #D3D3D3;#}
+{#            border-bottom:1px solid #D3D3D3;#}
+{#        }#}
+{#        footer{#}
+{#            background-color: #2a2730;#}
+{#            /*margin-bottom: 0px;*/#}
+{#        }#}
+{##}
+{#        footer p{#}
+{#            margin-top: 10px;#}
+{#            color: #99979c;#}
+{#            font-size: 18px;#}
+{#            text-align: center;#}
+{#            /*text-indent: 2em;*/#}
+{#        }#}
+{#        .logo{#}
+{#            margin-top: -6px;#}
+{#            /*.co*/#}
+{#        }#}
+{#        .hint{#}
+{#            /*margin: 0px auto;*/#}
+{#            text-align: center;#}
+{#            font-size: 16px;#}
+{#            margin-bottom: 0px;#}
+{#            /*margin-top: -10px;*/#}
+{#            /*margin-bottom: 10px;*/#}
+{#        }#}
+{#    </style>#}
+{#</head>#}
+{#<body>#}
+{#    <div class="navbar navbar-default navbar-static-top">#}
+{#        <!-- <div class="container"> -->#}
+{##}
+{#        <div class="navbar-header">#}
+{#            <button class="navbar-toggle" data-toggle="collapse" data-target="#togglemenu">#}
+{#                <span class="icon-bar"></span>#}
+{#                <span class="icon-bar"></span>#}
+{#                <span class="icon-bar"></span>#}
+{#            </button>#}
+{#            <a href="#" class="navbar-brand"><img src="../images/logo.png" alt="" class="logo"></a>#}
+{#        </div>#}
+{#        <div class="collapse navbar-collapse" id="togglemenu">#}
+{#            <ul class="nav navbar-nav">#}
+{#                <li><a href="/">首页</a></li>#}
+{#                <li><a href="${pageContext.request.contextPath}/toPartyList">查看会员</a></li>#}
+{#                <li><a href="${pageContext.request.contextPath}/toRegisterParty">注册会员</a></li>#}
+{#                <li><a href="${pageContext.request.contextPath}/toSelectPartyEdit">编辑会员</a></li>#}
+{#                <li><a href="${pageContext.request.contextPath}/toSelectPartyDelete">删除会员</a></li>#}
+{#                <li><a href="${pageContext.request.contextPath}/toSearchParty">查找会员</a></li>#}
+{#                <%--<li><a href="#">问答</a></li>--%>#}
+{#                <%--<li><a href="#">商城</a></li>--%>#}
+{#                <%--<li><a href="#">VIP</a></li>--%>#}
+{#                <%--<li><a href="#">活动</a></li>--%>#}
+{#                <%--<li><a href="#">招聘</a></li>--%>#}
+{#                <%--<li><a href="#">...</a></li>--%>#}
+{#            </ul>#}
+{##}
+{##}
+{#        </div>#}
+{#        <!-- </div> -->#}
+{##}
+{#    </div>#}
+{#    <div class="container">#}
+{#        <%--<h3 class="hint">双击要编辑的会员信息</h3>--%>#}
+{#            <div class="alert alert-info hint" role="alert">#}
+{#                双击进入题目#}
+{#            </div>#}
+{#    </div>#}
+{#    <div class="container">#}
+{#        <form name="frm" method="post">#}
+{#                        <table class="table table-striped table-hover">#}
+{#                            <tr>#}
+{#                                <td width="10%">题号</td>#}
+{#                                <td width="40%" align="left">&nbsp;&nbsp;&nbsp;&nbsp;题目</td>#}
+{#                                <td width="10%" align="left">通过率</td>#}
+{#                                <td width="10%" align="left">通过人数</td>#}
+{#                                <td width="10%" align="left">试验人数</td>#}
+{#                                <td width="20%" align="left">创建时间</td>#}
+{#                                <%--<td width="20%" align="left">联系地址</td>--%>#}
+{#                            </tr>#}
+{#                            <!--使用jstl标签渲染数据-->#}
+{#                            <c:forEach var="topic" items="${topic_list}" varStatus="t">#}
+{#                                <tr id="${topic.id}">#}
+{#                                    <td><c:out value='${topic.id}' /></td>#}
+{#                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;<c:out value='${topic.title}' /></td>#}
+{#                                    <td><c:out value='${topic.passingRate}' /></td>#}
+{#                                    <td><c:out value='${topic.passingPeopleCount}' /></td>#}
+{#                                    <td><c:out value='${topic.tryingPeopleCount}' /></td>#}
+{#                                    <td><c:out value='${topic.createdTime}' /></td>#}
+{#                                </tr>#}
+{#                            </c:forEach>#}
+{##}
+{#                        </table>#}
+{#        </form>#}
+{#    </div>#}
+{##}
+{#    <form action="${pageContext.request.contextPath}/upload" method="post" enctype="multipart/form-data">#}
+{#        文件：<input type="file" name="file"/><br>#}
+{#        名字：<input type="text" name="name"/><br>#}
+{#        <input type="submit" value="上传"/>#}
+{#    </form>#}
+{##}
+{##}
+{#    <%--<form name="Form2" action="${pageContext.request.contextPath}/fileUpload2" method="post"  enctype="multipart/form-data">--%>#}
+{#        <%--<h1>采用multipart提供的file.transfer方法上传文件</h1>--%>#}
+{#        <%--<input type="file" name="file">--%>#}
+{#        <%--<input type="submit" value="upload"/>--%>#}
+{#    <%--</form>--%>#}
+{##}
+{##}
+{#    <%--<form action="upload" enctype="multipart/form-data" method="post">--%>#}
+{#        <%--<table>--%>#}
+{#            <%--<tr>--%>#}
+{#                <%--<td>文件描述:</td>--%>#}
+{#                <%--<td><input type="text" name="description"></td>--%>#}
+{#            <%--</tr>--%>#}
+{#            <%--<tr>--%>#}
+{#                <%--<td>请选择文件:</td>--%>#}
+{#                <%--<td><input type="file" name="file"></td>--%>#}
+{#            <%--</tr>--%>#}
+{#            <%--<tr>--%>#}
+{#                <%--<td><input type="submit" value="上传"></td>--%>#}
+{#            <%--</tr>--%>#}
+{#        <%--</table>--%>#}
+{#    <%--</form>--%>#}
+{##}
+{##}
+{#    <footer class="footer navbar-fixed-bottom">#}
+{#        <div class="container">#}
+{##}
+{#            <p>地址：北京交通大学海滨学院&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮编：061100 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话13191938752 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>版权归北京交通大学海滨学院所有 未经许可不得转载使用　</p>#}
+{##}
+{#        </div>#}
+{#    </footer>#}
+{#    <%--<script type="text/javascript" color="0,0,0" opacity='0.7' zIndex="-2" count="150" src="../js/canvas-nest.min.js"></script>--%>#}
+{#</body>#}
+{#</html>#}

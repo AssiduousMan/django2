@@ -1,0 +1,579 @@
+
+{#<%--#}
+{#  Created by IntelliJ IDEA.#}
+{#  User: wyx#}
+{#  Date: 2018/4/22#}
+{#  Time: 12:01#}
+{#  To change this template use File | Settings | File Templates.#}
+{#--%>#}
+{#<%@ page contentType="text/html;charset=UTF-8" language="java" %>#}
+
+
+{% extends 'base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+{#    <script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>#}
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            // alert('ceshi');
+            //  图片和文字的动画效果。
+            $('.index_nav_blow .container .row .col-lg-6 img').animate({
+                marginLeft: '0px',
+                opacity: '1'
+            }, 1000);
+            $('.index_nav_blow .container .row .col-lg-6 .content').animate({
+                marginLeft: '0px',
+                marginRight: '0px',
+                opacity: '1'
+            }, 1000);
+            $('.system_introduce').animate({
+                marginTop: '50px',
+                opacity: '1'
+            }, 1000);
+        });
+    </script>
+    <style type="text/css">
+        body{
+            margin-bottom: 80px;
+        }
+        hr{
+            border-top:2px solid gray;
+        }
+        p{
+            font-size: 18px;
+        }
+        .logo{
+            margin-top: -6px;
+            /*.co*/
+        }
+
+        .index_nav_blow{
+            margin: -20px 0px 0px 0px;
+            height: 500px;
+            /*background-color: #cdbfe3;*/
+            background-image: linear-gradient(to bottom,#563d7c 0,#6f5499 100%);
+        }
+        .index_nav_blow .container .row{
+            margin: 100px 15px 15px 15px;
+            /*background-color: red;*/
+        }
+        .index_nav_blow .container .row div{
+            /*background-color: gold;*/
+            /*border: 1px solid gray;*/
+        }
+
+        .index_nav_blow .container .row h1{
+            color: white;
+            text-align: center;
+        }
+        .index_nav_blow .container .row h3{
+            color: white;
+            line-height: 40px;
+            text-indent: 2em;
+            /*text-align: center;*/
+        }
+
+        .index_nav_blow .container .row .col-lg-6 img{
+            width: 500px;
+            margin-left: -200px;
+            opacity: 0;
+            /*height: 200px;*/
+        }
+        .index_nav_blow .container .row .col-lg-6 .content{
+            margin-top: 70px;
+            margin-left: 200px;
+            margin-right: -200px;
+            opacity: 0;
+        }
+
+        .system_introduce{
+            margin-top: 250px;
+            opacity: 0;
+        }
+
+        .system_introduce h1{
+            font-size: 50px;
+            text-align: center;
+            color: inherit;
+        }
+        .system_introduce h3{
+            font-size: 20px;
+            text-align: center;
+            color: inherit;
+            line-height: 30px;
+            text-indent: 2em;
+        }
+
+        footer{
+            background-color: #2a2730;
+        }
+
+        footer p{
+            margin-top: 10px;
+            color: #99979c;
+            font-size: 18px;
+            text-align: center;
+            /*text-indent: 2em;*/
+        }
+
+
+    </style>
+{% endblock head %}
+{% block content %}
+
+    <div class="index_nav_blow">
+
+        <div class="container wyx">
+            <div class="row">
+                <div class="col-lg-6">
+                    <img src="/static/images/bjtuhbxy.jpg" alt="">
+                </div>
+                <div class="col-lg-6">
+                    <div class="content">
+                        <!-- <br> -->
+                        <h1>OJ做题系统</h1>
+                        <h3>OJ做题系统OJ做题系统OJ做题系统OJ做题系统OJ做题系统OJ做题系统OJ做题系统OJ做题系统OJ做题系统OJ做题系统OJ做题系统</h3>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container system_introduce">
+        <h1>
+            系统说明
+        </h1>
+        <h3>
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+        </h3>
+
+    </div>
+
+{#	<div class="navbar_con">#}
+{#		<div class="navbar">#}
+{#			<h1 class="fl">全部商品分类</h1>#}
+{#			<ul class="navlist fl">#}
+{#				<li><a href="">首页</a></li>#}
+{#				<li class="interval">|</li>#}
+{#				<li><a href="">手机生鲜</a></li>#}
+{#				<li class="interval">|</li>#}
+{#				<li><a href="">抽奖</a></li>#}
+{#			</ul>#}
+{#		</div>#}
+{#	</div>#}
+{##}
+{#	<div class="center_con clearfix">#}
+{#		<ul class="subnav fl">#}
+{#			<li><a href="#model01" class="fruit">新鲜水果</a></li>#}
+{#			<li><a href="#model02" class="seafood">海鲜水产</a></li>#}
+{#			<li><a href="#model03" class="meet">猪牛羊肉</a></li>#}
+{#			<li><a href="#model04" class="egg">禽类蛋品</a></li>#}
+{#			<li><a href="#model05" class="vegetables">新鲜蔬菜</a></li>#}
+{#			<li><a href="#model06" class="ice">速冻食品</a></li>#}
+{#		</ul>#}
+{#		<div class="slide fl">#}
+{#			<ul class="slide_pics">#}
+{#				<li><img src="/static/images/slide.jpg" alt="幻灯片"></li>#}
+{#				<li><img src="/static/images/slide02.jpg" alt="幻灯片"></li>#}
+{#				<li><img src="/static/images/slide03.jpg" alt="幻灯片"></li>#}
+{#				<li><img src="/static/images/slide04.jpg" alt="幻灯片"></li>#}
+{#			</ul>#}
+{#			<div class="prev"></div>#}
+{#			<div class="next"></div>#}
+{#			<ul class="points"></ul>#}
+{#		</div>#}
+{#		<div class="adv fl">#}
+{#			<a href="#"><img src="/static/images/adv01.jpg"></a>#}
+{#			<a href="#"><img src="/static/images/adv02.jpg"></a>#}
+{#		</div>#}
+{#	</div>#}
+{##}
+{#	<div class="list_model">#}
+{#		<div class="list_title clearfix">#}
+{#			<h3 class="fl" id="model01">新鲜水果</h3>#}
+{#			<div class="subtitle fl">#}
+{#				<span>|</span>#}
+{#			    {% for g in type01 %}#}
+{#                    <a href="/{{ g.id }}/">{{ g.gtitle }}...</a>#}
+{#                {% endfor %}#}
+{#			</div>#}
+{#			<a href="/list1_1_1/" class="goods_more fr" id="fruit_more">查看更多 ></a>#}
+{#		</div>#}
+{##}
+{#		<div class="goods_con clearfix">#}
+{#			<div class="goods_banner fl"><img src="/static/images/banner01.jpg"></div>#}
+{#			<ul class="goods_list fl">#}
+{#			    {% for g in type0 %}#}
+{#                    <li>#}
+{#					    <h4><a href="/{{ g.id }}/">{{ g.gtitle }}</a></h4>#}
+{#					    <a href="/{{ g.id }}/"><img src="/static/{{ g.gpic }}"></a>#}
+{#					    <div class="prize">¥ {{ g.gprice }}</div>#}
+{#				    </li>#}
+{#                {% endfor %}#}
+{#			</ul>#}
+{#		</div>#}
+{#	</div>#}
+{##}
+{#	<div class="list_model">#}
+{#		<div class="list_title clearfix">#}
+{#			<h3 class="fl" id="model02">海鲜水产</h3>#}
+{#			<div class="subtitle fl">#}
+{#				<span>|</span>#}
+{#				{% for g in type11 %}#}
+{#                    <a href="/{{ g.id }}/">{{ g.gtitle }}...</a>#}
+{#                {% endfor %}#}
+{#			</div>#}
+{#			<a href="/list2_1_1/" class="goods_more fr">查看更多 ></a>#}
+{#		</div>#}
+{##}
+{#		<div class="goods_con clearfix">#}
+{#			<div class="goods_banner fl"><img src="/static/images/banner02.jpg"></div>#}
+{#			<ul class="goods_list fl">#}
+{#				{% for g in type1 %}#}
+{#                    <li>#}
+{#					    <h4><a href="/{{ g.id }}/">{{ g.gtitle }}</a></h4>#}
+{#					    <a href="/{{ g.id }}/"><img src="/static/{{ g.gpic }}"></a>#}
+{#					    <div class="prize">¥ {{ g.gprice }}</div>#}
+{#				    </li>#}
+{#                {% endfor %}#}
+{#			</ul>#}
+{#		</div>#}
+{#	</div>#}
+{##}
+{#	<div class="list_model">#}
+{#		<div class="list_title clearfix">#}
+{#			<h3 class="fl" id="model03">猪牛羊肉</h3>#}
+{#			<div class="subtitle fl">#}
+{#				<span>|</span>#}
+{#				{% for g in type21 %}#}
+{#                    <a href="/{{ g.id }}/">{{ g.gtitle }}...</a>#}
+{#                {% endfor %}#}
+{#			</div>#}
+{#			<a href="/list3_1_1/" class="goods_more fr">查看更多 ></a>#}
+{#		</div>#}
+{##}
+{#		<div class="goods_con clearfix">#}
+{#			<div class="goods_banner fl"><img src="/static/images/banner03.jpg"></div>#}
+{#			<ul class="goods_list fl">#}
+{#				{% for g in type2 %}#}
+{#                    <li>#}
+{#					    <h4><a href="/{{ g.id }}/">{{ g.gtitle }}</a></h4>#}
+{#					    <a href="/{{ g.id }}/"><img src="/static/{{ g.gpic }}"></a>#}
+{#					    <div class="prize">¥ {{ g.gprice }}</div>#}
+{#				    </li>#}
+{#                {% endfor %}#}
+{#			</ul>#}
+{#		</div>#}
+{#	</div>#}
+{##}
+{#	<div class="list_model">#}
+{#		<div class="list_title clearfix">#}
+{#			<h3 class="fl" id="model04">禽类蛋品</h3>#}
+{#			<div class="subtitle fl">#}
+{#				<span>|</span>#}
+{#				{% for g in type31 %}#}
+{#                    <a href="/{{ g.id }}/">{{ g.gtitle }}...</a>#}
+{#                {% endfor %}#}
+{#			</div>#}
+{#			<a href="/list4_1_1/" class="goods_more fr">查看更多 ></a>#}
+{#		</div>#}
+{##}
+{#		<div class="goods_con clearfix">#}
+{#			<div class="goods_banner fl"><img src="/static/images/banner04.jpg"></div>#}
+{#			<ul class="goods_list fl">#}
+{#				{% for g in type3 %}#}
+{#                    <li>#}
+{#					    <h4><a href="/{{ g.id }}/">{{ g.gtitle }}</a></h4>#}
+{#					    <a href="/{{ g.id }}/"><img src="/static/{{ g.gpic }}"></a>#}
+{#					    <div class="prize">¥ {{ g.gprice }}</div>#}
+{#				    </li>#}
+{#                {% endfor %}#}
+{#			</ul>#}
+{#		</div>#}
+{#	</div>#}
+{##}
+{#	<div class="list_model">#}
+{#		<div class="list_title clearfix">#}
+{#			<h3 class="fl" id="model05">新鲜蔬菜</h3>#}
+{#			<div class="subtitle fl">#}
+{#				<span>|</span>#}
+{#				{% for g in type41 %}#}
+{#                    <a href="/{{ g.id }}/">{{ g.gtitle }}...</a>#}
+{#                {% endfor %}#}
+{#			</div>#}
+{#			<a href="/list5_1_1/" class="goods_more fr">查看更多 ></a>#}
+{#		</div>#}
+{##}
+{#		<div class="goods_con clearfix">#}
+{#			<div class="goods_banner fl"><img src="/static/images/banner05.jpg"></div>#}
+{#			<ul class="goods_list fl">#}
+{#				{% for g in type4 %}#}
+{#                    <li>#}
+{#					    <h4><a href="/{{ g.id }}/">{{ g.gtitle }}</a></h4>#}
+{#					    <a href="/{{ g.id }}/"><img src="/static/{{ g.gpic }}"></a>#}
+{#					    <div class="prize">¥ {{ g.gprice }}</div>#}
+{#				    </li>#}
+{#                {% endfor %}#}
+{#			</ul>#}
+{#		</div>#}
+{#	</div>#}
+{##}
+{#	<div class="list_model">#}
+{#		<div class="list_title clearfix">#}
+{#			<h3 class="fl" id="model06">速冻食品</h3>#}
+{#			<div class="subtitle fl">#}
+{#				<span>|</span>#}
+{#				{% for g in type51 %}#}
+{#                    <a href="/{{ g.id }}/">{{ g.gtitle }}...</a>#}
+{#                {% endfor %}#}
+{#			</div>#}
+{#			<a href="/list6_1_1/" class="goods_more fr">查看更多 ></a>#}
+{#		</div>#}
+{##}
+{#		<div class="goods_con clearfix">#}
+{#			<div class="goods_banner fl"><img src="/static/images/banner06.jpg"></div>#}
+{#			<ul class="goods_list fl">#}
+{#				{% for g in type5 %}#}
+{#                    <li>#}
+{#					    <h4><a href="/{{ g.id }}/">{{ g.gtitle }}</a></h4>#}
+{#					    <a href="/{{ g.id }}/"><img src="/static/{{ g.gpic }}"></a>#}
+{#					    <div class="prize">¥ {{ g.gprice }}</div>#}
+{#				    </li>#}
+{#                {% endfor %}#}
+{#			</ul>#}
+{#		</div>#}
+{#	</div>#}
+{% endblock content %}
+
+
+
+
+{#<html>#}
+{#<head>#}
+{#    <title>首页</title>#}
+{#    <link rel="stylesheet" href="../css/bootstrap.min.css">#}
+{#    <script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>#}
+{#    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->#}
+{#    <script type="text/javascript" src="../js/bootstrap.min.js"></script>#}
+{#    <script type="text/javascript">#}
+{#        $(function(){#}
+{#            // alert('ceshi');#}
+{#            //  图片和文字的动画效果。#}
+{#            $('.index_nav_blow .container .row .col-lg-6 img').animate({#}
+{#                marginLeft: '0px',#}
+{#                opacity: '1'#}
+{#            }, 1000);#}
+{#            $('.index_nav_blow .container .row .col-lg-6 .content').animate({#}
+{#                marginLeft: '0px',#}
+{#                marginRight: '0px',#}
+{#                opacity: '1'#}
+{#            }, 1000);#}
+{#            $('.system_introduce').animate({#}
+{#                marginTop: '50px',#}
+{#                opacity: '1'#}
+{#            }, 1000);#}
+{#        });#}
+{#    </script>#}
+{#    <style type="text/css">#}
+{#        body{#}
+{#            margin-bottom: 80px;#}
+{#        }#}
+{#        hr{#}
+{#            border-top:2px solid gray;#}
+{#        }#}
+{#        p{#}
+{#            font-size: 18px;#}
+{#        }#}
+{#        .logo{#}
+{#            margin-top: -6px;#}
+{#            /*.co*/#}
+{#        }#}
+{##}
+{#        .index_nav_blow{#}
+{#            margin: -20px 0px 0px 0px;#}
+{#            height: 500px;#}
+{#            /*background-color: #cdbfe3;*/#}
+{#            background-image: linear-gradient(to bottom,#563d7c 0,#6f5499 100%);#}
+{#        }#}
+{#        .index_nav_blow .container .row{#}
+{#            margin: 100px 15px 15px 15px;#}
+{#            /*background-color: red;*/#}
+{#        }#}
+{#        .index_nav_blow .container .row div{#}
+{#            /*background-color: gold;*/#}
+{#            /*border: 1px solid gray;*/#}
+{#        }#}
+{##}
+{#        .index_nav_blow .container .row h1{#}
+{#            color: white;#}
+{#            text-align: center;#}
+{#        }#}
+{#        .index_nav_blow .container .row h3{#}
+{#            color: white;#}
+{#            line-height: 40px;#}
+{#            text-indent: 2em;#}
+{#            /*text-align: center;*/#}
+{#        }#}
+{##}
+{#        .index_nav_blow .container .row .col-lg-6 img{#}
+{#            width: 500px;#}
+{#            margin-left: -200px;#}
+{#            opacity: 0;#}
+{#            /*height: 200px;*/#}
+{#        }#}
+{#        .index_nav_blow .container .row .col-lg-6 .content{#}
+{#            margin-top: 70px;#}
+{#            margin-left: 200px;#}
+{#            margin-right: -200px;#}
+{#            opacity: 0;#}
+{#        }#}
+{##}
+{#        .system_introduce{#}
+{#            margin-top: 250px;#}
+{#            opacity: 0;#}
+{#        }#}
+{##}
+{#        .system_introduce h1{#}
+{#            font-size: 50px;#}
+{#            text-align: center;#}
+{#            color: inherit;#}
+{#        }#}
+{#        .system_introduce h3{#}
+{#            font-size: 20px;#}
+{#            text-align: center;#}
+{#            color: inherit;#}
+{#            line-height: 30px;#}
+{#            text-indent: 2em;#}
+{#        }#}
+{##}
+{#        footer{#}
+{#            background-color: #2a2730;#}
+{#        }#}
+{##}
+{#        footer p{#}
+{#            margin-top: 10px;#}
+{#            color: #99979c;#}
+{#            font-size: 18px;#}
+{#            text-align: center;#}
+{#            /*text-indent: 2em;*/#}
+{#        }#}
+{##}
+{##}
+{#    </style>#}
+{#    <%--<style type="text/css">--%>#}
+{#        <%--body{--%>#}
+{#            <%--/*background-color: gold;*/--%>#}
+{#            <%--background:url("../images/fengjing.jpg") no-repeat;--%>#}
+{#            <%--background-size: 100%;--%>#}
+{#        <%--}--%>#}
+{#    <%--</style>--%>#}
+{#</head>#}
+{#<body>#}
+{#    <div class="navbar navbar-default navbar-static-top">#}
+{#        <!-- <div class="container"> -->#}
+{##}
+{#        <div class="navbar-header">#}
+{#            <button class="navbar-toggle" data-toggle="collapse" data-target="#togglemenu">#}
+{#                <span class="icon-bar"></span>#}
+{#                <span class="icon-bar"></span>#}
+{#                <span class="icon-bar"></span>#}
+{#            </button>#}
+{#            <a href="#" class="navbar-brand"><img src="../images/logo.png" alt="" class="logo"></a>#}
+{#        </div>#}
+{#        <div class="collapse navbar-collapse" id="togglemenu">#}
+{#            <ul class="nav navbar-nav">#}
+{#                <li><a href="/">首页</a></li>#}
+{#                <li><a href="${pageContext.request.contextPath}/toTopicList">查看会员</a></li>#}
+{#                <li><a href="${pageContext.request.contextPath}/toRegisterParty">注册会员</a></li>#}
+{#                <li><a href="${pageContext.request.contextPath}/toSelectPartyEdit">编辑会员</a></li>#}
+{#                <li><a href="${pageContext.request.contextPath}/toSelectPartyDelete">删除会员</a></li>#}
+{#                <li><a href="${pageContext.request.contextPath}/toSearchParty">查找会员</a></li>#}
+{#                <%--<li><a href="#">问答</a></li>--%>#}
+{#                <%--<li><a href="#">商城</a></li>--%>#}
+{#                <%--<li><a href="#">VIP</a></li>--%>#}
+{#                <%--<li><a href="#">活动</a></li>--%>#}
+{#                <%--<li><a href="#">招聘</a></li>--%>#}
+{#                <%--<li><a href="#">...</a></li>--%>#}
+{#            </ul>#}
+{##}
+{##}
+{#        </div>#}
+{#        <!-- </div> -->#}
+{##}
+{#    </div>#}
+{##}
+{#    <div class="index_nav_blow">#}
+{##}
+{#        <div class="container wyx">#}
+{#            <div class="row">#}
+{#                <div class="col-lg-6">#}
+{#                    <img src="/static/images/bjtuhbxy.jpg" alt="">#}
+{#                </div>#}
+{#                <div class="col-lg-6">#}
+{#                    <div class="content">#}
+{#                        <!-- <br> -->#}
+{#                        <h1>会员管理系统</h1>#}
+{#                        <h3>会员管理系统简介会员管理系统简介会员管理系统简介会员管理系统简介会员管理系统简介会员管理系统简介会员管理系统简介</h3>#}
+{#                    </div>#}
+{##}
+{##}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="container system_introduce">#}
+{#        <h1>#}
+{#            系统说明#}
+{#        </h1>#}
+{#        <h3>#}
+{#            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX#}
+{#            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX#}
+{#            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX#}
+{#            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX#}
+{#            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX#}
+{#            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX#}
+{#            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX#}
+{#            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX#}
+{#            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX#}
+{#            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX#}
+{#            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX#}
+{#            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX#}
+{#            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX#}
+{#            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX#}
+{#            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX#}
+{#            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX#}
+{##}
+{#        </h3>#}
+{##}
+{#    </div>#}
+{#    <footer class="footer navbar-fixed-bottom">#}
+{#        <div class="container">#}
+{##}
+{#            <p>地址：北京交通大学海滨学院&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮编：061100 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话13191938752 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>版权归北京交通大学海滨学院所有 未经许可不得转载使用　</p>#}
+{##}
+{#        </div>#}
+{#    </footer>#}
+{##}
+{#    <%--<script type="text/javascript" color="255,255,255" opacity='0.7' zIndex="-2" count="209" src="../js/canvas-nest.min.js"></script>--%>#}
+{#</body>#}
+{#</html>#}

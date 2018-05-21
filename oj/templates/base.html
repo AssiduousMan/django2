@@ -1,0 +1,141 @@
+{% extends 'base_foot.html' %}
+{% block login_register_form %}
+    <script type="text/javascript">
+        $(function () {
+            {#alert($.cookie('number'));#}
+                var number = $.cookie('number');
+                {#alert(number);#}
+                if(number != null){
+                $('.login_register_form').empty();
+                var span1 = $('<span>用户：' + number + '</span>');
+                $('.login_register_form').append(span1);
+                var a_cancel = $('<span>&nbsp;&nbsp;</span><a href="/user/logout/">注销</a>&nbsp;&nbsp;');
+                $('.login_register_form').append(a_cancel);
+                $('.edit_user_a').attr("href","/user/toEditUser_" + number);
+            }
+        });
+
+    </script>
+{% endblock login_register_form %}
+{% block body %}
+    <div class="navbar navbar-default navbar-static-top">
+        <!-- <div class="container"> -->
+
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target="#togglemenu">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#" class="navbar-brand"><img src="/static/images/logo.png" alt="" class="logo"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="togglemenu">
+            <ul class="nav navbar-nav">
+                <li><a href="/">首页</a></li>
+                <li><a href="/toTopicList">题目列表</a></li>
+                <li><a href="/toShowTopicStatus">题目状态</a></li>
+                <li><a href="/toShowUserRanking">排名状态</a></li>
+                <li><a href="/user/toEditUser_0" class="edit_user_a">修改帐号信息</a></li>
+{#                <li><a href="${pageContext.request.contextPath}/toSearchParty">查找会员</a></li>#}
+{#                <%--<li><a href="#">问答</a></li>--%>#}
+{#                <%--<li><a href="#">商城</a></li>--%>#}
+{#                <%--<li><a href="#">VIP</a></li>--%>#}
+{#                <%--<li><a href="#">活动</a></li>--%>#}
+{#                <%--<li><a href="#">招聘</a></li>--%>#}
+{#                <%--<li><a href="#">...</a></li>--%>#}
+
+            </ul>
+            <form action="" class="navbar-form navbar-right login_register_form" style="margin-top: 15px;">
+
+{#          <span>&nbsp;&nbsp;</span>#}
+{#          <a href="#"><span class="glyphicon glyphicon-pencil"></span><span>&nbsp;写博客</span></a>#}
+{#          <span>&nbsp;&nbsp;</span>#}
+{#          <a href="#"><span class="glyphicon glyphicon-new-window"></span><span>&nbsp;发Chat</span></a>#}
+{#          <span>&nbsp;&nbsp;</span>#}
+          <!-- <a href=""><span class="glyphicon glyphicon-pencil"></span><span>&nbsp;写博客</span></a> -->
+                <a href="/user/login/" class="a_login">登录</a>
+                <span>&nbsp;&nbsp;</span>
+                <a href="/user/register" class="a_register">注册</a>
+                <span>&nbsp;&nbsp;</span>
+             </form>
+
+
+        </div>
+        <!-- </div> -->
+{#    <form action="" class="navbar-form navbar-right">#}
+{#          <div class="form-group">#}
+{#            <div class="input-group">#}
+{#              <input type="text" class="form-control">#}
+{#              <span class="input-group-btn">#}
+{#                <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>#}
+{#              </span>#}
+{#            </div>#}
+{#          </div>#}
+{#          <span>&nbsp;&nbsp;</span>#}
+{#          <a href="#"><span class="glyphicon glyphicon-pencil"></span><span>&nbsp;写博客</span></a>#}
+{#          <span>&nbsp;&nbsp;</span>#}
+{#          <a href="#"><span class="glyphicon glyphicon-new-window"></span><span>&nbsp;发Chat</span></a>#}
+{#          <span>&nbsp;&nbsp;</span>#}
+{#          <!-- <a href=""><span class="glyphicon glyphicon-pencil"></span><span>&nbsp;写博客</span></a> -->#}
+{#          <a href="https://passport.csdn.net/account/login">登录</a>#}
+{#          <span>&nbsp;&nbsp;</span>#}
+{#          <a href="https://passport.csdn.net/account/mobileregister?action=mobileRegister">注册</a>#}
+{#          <span>&nbsp;&nbsp;</span>#}
+{#        </form>#}
+
+    </div>
+{#    <div class="header_con">#}
+{#		<div class="header">#}
+{#			<div class="welcome fl">欢迎来到天天生鲜!</div>#}
+{#			<div class="fr">#}
+{#                {% if request.session.user_name|default:'' != '' %}#}
+{#				<div class="login_info fl" style="display: inline">#}
+{#					欢迎您：<em>{{ request.session.user_name }}</em>#}
+{#                    <span>|</span>#}
+{#                    <a href="/user/logout/">退出</a>#}
+{#                </div>#}
+{#                {% else %}#}
+{#				<div class="login_btn fl">#}
+{#					<a href="login.html">登录</a>#}
+{#					<span>|</span>#}
+{#					<a href="register.html">注册</a>#}
+{#				</div>#}
+{#                {% endif %}#}
+{#				<div class="user_link fl">#}
+{#					<span>|</span>#}
+{#					<a href="/user/info/">用户中心</a>#}
+{#					<span>|</span>#}
+{#					<a href="/cart/">我的购物车</a>#}
+{#					<span>|</span>#}
+{#					<a href="user_center_order.html">我的订单</a>#}
+{#				</div>#}
+{#			</div>#}
+{#		</div>#}
+{#	</div>#}
+{##}
+{#	<div class="search_bar clearfix">#}
+{#		<a href="index.html" class="logo fl"><img src="/static/images/logo.png"></a>#}
+{#        {% if page_name == 1 %}#}
+{#		<div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;{{ title }}</div>#}
+{#            <form action="/search/" method="get" target="_blank">#}
+{#		<div class="search_con fr">#}
+{#			<input type="text" class="input_text fl" name="q" placeholder="搜索商品">#}
+{#			<input type="submit" class="input_btn fr" name="" value="搜索">#}
+{#		</div>#}
+{#            </form>#}
+{#        {% endif %}#}
+{#        {% if guest_cart == 1 %}#}
+{#        <form action="/search/" method="get" target="_blank">#}
+{#		<div class="search_con fr">#}
+{#			<input type="text" class="input_text fl" name="q" placeholder="搜索商品">#}
+{#			<input type="submit" class="input_btn fr" name="" value="搜索">#}
+{#		</div>#}
+{#            </form>#}
+{#		<div class="guest_cart fr">#}
+{#			<a href="#" class="cart_name fl">我的购物车</a>#}
+{#			<div class="goods_count fl" id="show_count">1</div>#}
+{#		</div>#}
+{#        {% endif %}#}
+{#	</div>#}
+    {% block content %}{% endblock content %}
+{% endblock body %}

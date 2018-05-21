@@ -1,0 +1,103 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+   int n,a[99],sum=0;
+   while(cin>>n&&n)
+   {
+       int i;
+       for(i=0;i<n;i++)
+       {
+           cin>>a[i];
+       }
+       for(i=0;i<n;i++)
+       {
+           if(a[i]==100||a[i]==50||a[i]==20||a[i]==10||a[i]==2||a[i]==1)
+           {
+               sum++;
+           }
+           else
+           {
+                int t=a[i],sun=a[i]%100;
+                while(sun!=t)
+                {
+                    sum++;
+                    t=sun;
+                    sun=sun%100;
+                }
+                if(t==a[i])
+                {
+                    t=a[i];
+                    sun=a[i]%50;
+                }
+                else
+                {
+                    t=sun;
+                    sun=sun%50;
+                }
+                while(sun!=t)
+                {
+                    sum++;
+                    t=sun;
+                    sun=sun%50;
+                }
+                if(t==a[i])
+                {
+                    t=a[i];
+                    sun=a[i]%20;
+                }
+                else
+                {
+                    t=sun;
+                    sun=sun%20;
+                }
+                while(sun!=t)
+                {
+                    sum++;
+                    t=sun;
+                    sun=sun%50;
+                }
+                if(t==a[i])
+                {
+                    t=a[i];
+                    sun=a[i]%10;
+                }
+                else
+                {
+                    t=sun;
+                    sun=sun%10;
+                }
+                while(sun!=t)
+                {
+                    sum++;
+                    t=sun;
+                    sun=sun%10;
+                }
+                if(t==a[i])
+                {
+                    t=a[i];
+                    sun=a[i]%2;
+                }
+                else
+                {
+                    t=sun;
+                    sun=sun%2;
+                }
+                while(sun!=t)
+                {
+                    sum++;
+                    t=sun;
+                    sun=sun%2;
+                }
+                if(sun==1)
+                {
+                    sum++;
+                }
+           }
+       }
+       cout<<sum;
+   }
+
+   return 0;
+}
